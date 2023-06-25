@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class BookStoreController extends Controller
     {
         $book = BookStore::all();
 
-        return view('app.book.index', [
+        return view('app.dashboard', [
             'book' => $book
         ]);
     }
@@ -35,7 +35,7 @@ class BookStoreController extends Controller
      */
     public function create()
     {
-        return view('app.book.create');
+        return view('app.create');
     }
 
 
@@ -61,7 +61,7 @@ class BookStoreController extends Controller
             "value" => $request->value
         ]);
 
-        return redirect()->route('book.index');
+        return redirect()->route('app.dashboard');
     }
 
     /**
@@ -74,7 +74,7 @@ class BookStoreController extends Controller
     {
         $book = BookStore::find($id);
 
-        return view('app.book.edit', [
+        return view('app.edit', [
             'book' => $book
         ]);
     }

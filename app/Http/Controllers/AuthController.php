@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,10 +23,10 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         if(Auth::check() === true) {
-            return redirect()->route('app.home');
+            return redirect()->route('app.dashboard');
         }
 
-        return view('app.index');
+        return view('login');
     }
 
     /**
@@ -83,6 +83,8 @@ class AuthController extends Controller
                 'error' => 'E-mail já existente'
             ]);
         }
+
+        echo $user;
 
         $password = Hash::make($request->password);
 

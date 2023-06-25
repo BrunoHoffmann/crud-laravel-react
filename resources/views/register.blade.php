@@ -16,45 +16,42 @@
 </head>
 <body>
 
-<div class="ajax_response"></div>
+<div></div>
 
-<div class="dash_login">
-    <div class="dash_login_left">
-        <article class="dash_login_left_box">
-            <header class="dash_login_box_headline">
+<div>
+    <div>
+        <article>
+            <header>
                 <h1>Register</h1>
             </header>
 
             <form name="login" action="{{route('register.do')}}" method="post" autocomplete="off">
+                @csrf
                 <label>
-                    <span class="field icon-envelope">Name:</span>
+                    <span>Name:</span>
                     <input type="text" name="name" placeholder="John john" required/>
                 </label>
                 <label>
-                    <span class="field icon-envelope">E-mail:</span>
+                    <span>E-mail:</span>
                     <input type="email" name="email" placeholder="admin@admin.com" required/>
                 </label>
 
                 <label>
-                    <span class="field icon-unlock-alt">Senha:</span>
-                    <input type="password" name="password_check" placeholder="**************"/>
+                    <span>Senha:</span>
+                    <input type="password" name="password" placeholder="**************" required/>
                 </label>
 
-                <button class="gradient gradient-orange radius icon-sign-in">Create</button>
+                <label>
+                    <span>Confirmação de senha:</span>
+                    <input type="password" name="password_confirmation" placeholder="**************" required/>
+                </label>
+
+                <button>Create</button>
             </form>
 
-            <footer>
-                <p>&copy; <?= date("Y"); ?> - Todos os Direitos Reservados</p>
-            </footer>
+            <a href="{{ route('login') }}">login</a>
         </article>
     </div>
-
-    <div class="dash_login_right"></div>
-
 </div>
-
-{{-- <script src="{{ url(mix('backend/assets/js/jquery.js'))}}"></script>
-<script src="{{ url(mix('backend/assets/js/login.js'))}}"></script> --}}
-
 </body>
 </html>

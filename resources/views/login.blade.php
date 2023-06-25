@@ -16,22 +16,21 @@
     </header>
 
     <form name="login" action="{{route('login.do')}}" method="post" autocomplete="off">
+        @csrf
         <label>
             <span>E-mail:</span>
-            <input type="email" name="email" placeholder="Informe seu e-mail" required/>
+            <input type="email" name="email" placeholder="email@email.com" required/>
         </label>
 
         <label>
             <span>Senha:</span>
-            <input type="password" name="password_check" placeholder="Informe sua senha"/>
+            <input type="password" name="password_check" placeholder="*********"/>
         </label>
 
         <button>Login</button>
     </form>
+    <a href="{{ route('register') }}">register</a>
 </div>
-
-{{-- <script src="{{ url(mix('backend/assets/js/jquery.js'))}}"></script>
-<script src="{{ url(mix('backend/assets/js/login.js'))}}"></script> --}}
 
 </body>
 </html>
