@@ -25,6 +25,7 @@
 
 <div>
     <section>
+
         <div>
             <a href="{{route('admin.logout')}}">Sair</a>
         </div>
@@ -34,6 +35,8 @@
         </div>
     </section>
 </div>
+
+<script src="{{ url(mix('backend/assets/js/jquery.js'))}}"></script>
 
 @hasSection('js')
     @yield('js')

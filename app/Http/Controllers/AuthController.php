@@ -13,6 +13,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
+        parent::__construct();
         date_default_timezone_set('America/Sao_Paulo');
     }
     /**
@@ -47,6 +48,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
         if(in_array('', $request->only('email', 'password'))) {
             $json['message'] = $this->message->error('Ooops, inform all fields to do login')->render();
             return response()->json($json);
@@ -63,9 +65,10 @@ class AuthController extends Controller
         ];
 
         if(!Auth::attempt($credentials)) {
-            $json['message'] = $this->message->error('Ooops, e-mail or password are wrong')->render();
+            $json['message'] = $this->message->error('Ooops, e-mail or password are wrong <a href="/">Voltar</a>')->render();
             return response()->json($json);
         }
+
         $nameUser = User::firstWhere('email', $request->email);
         session(['user' => $nameUser['name']]);
         session(['id' => $nameUser['id']]);
@@ -83,8 +86,6 @@ class AuthController extends Controller
                 'error' => 'E-mail já existente'
             ]);
         }
-
-        echo $user;
 
         $password = Hash::make($request->password);
 

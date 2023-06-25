@@ -53,5 +53,7 @@
         </article>
     </div>
 </div>
+<script src="{{ url(mix('backend/assets/js/jquery.js'))}}"></script>
+<script src="{{ url(mix('backend/assets/js/login.js'))}}"></script>
 </body>
 </html>
