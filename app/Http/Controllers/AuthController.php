@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Http\Model\User;
 use App\Http\Model\BookStore;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,7 +70,7 @@ class AuthController extends Controller
         session(['user' => $nameUser['name']]);
         session(['id' => $nameUser['id']]);
 
-        $json['redirect'] = route('app.home');
+        $json['redirect'] = route('books.index');
         return response()->json($json);
     }
 

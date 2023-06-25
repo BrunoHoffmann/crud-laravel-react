@@ -17,19 +17,19 @@ Route::prefix('app')->group(function() {
     Route::group(['middleware' => ['auth']], function() {
 
         // Dashboard HOME
-        Route::get('/dashboard', 'AuthController@home')->name('books.index');
+        Route::get('/dashboard', 'App\Http\Controllers\AuthController@home')->name('books.index');
 
         // Usuários
         Route::prefix('books')->group(function() {
-            Route::get('/create', 'BookStoreController@create')->name('books.create');
-            Route::post('/store', 'BookStoreController@store')->name('books.store');
-            Route::get('/edit/{id}', 'BookStoreController@edit')->name('books.edit');
-            Route::put('/update/{id}', 'BookStoreController@update')->name('books.update');
-            Route::delete('/destroy/{id}', 'BookStoreController@destroy')->name('books.destroy');
+            Route::get('/create', 'App\Http\Controllers\BookStoreController@create')->name('books.create');
+            Route::post('/store', 'App\Http\Controllers\BookStoreController@store')->name('books.store');
+            Route::get('/edit/{id}', 'App\Http\Controllers\BookStoreController@edit')->name('books.edit');
+            Route::put('/update/{id}', 'App\Http\Controllers\BookStoreController@update')->name('books.update');
+            Route::delete('/destroy/{id}', 'App\Http\Controllers\BookStoreController@destroy')->name('books.destroy');
         });
     });
 
 
     // logout
-    Route::get('/logout', 'AuthController@logout')->name('app.logout');
+    Route::get('/logout', 'App\Http\Controllers\AuthController@logout')->name('app.logout');
 });

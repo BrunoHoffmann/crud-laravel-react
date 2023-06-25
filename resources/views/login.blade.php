@@ -24,7 +24,7 @@
 
         <label>
             <span>Senha:</span>
-            <input type="password" name="password_check" placeholder="*********"/>
+            <input type="password" name="password" placeholder="*********"/>
         </label>
 
         <button>Login</button>
