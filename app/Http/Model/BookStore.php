@@ -4,7 +4,7 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class bookStore extends Model
+class BookStore extends Model
 {
     protected $table = 'book_store';
 

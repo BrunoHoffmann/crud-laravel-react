@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', function () {
     return view('login');
 })->name('login');
@@ -11,8 +10,8 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-Route::post("login", "AuthController@login")->name('login.do');
-Route::post("register", "AuthController@register")->name('register.do');
+Route::post("login", "App\Http\Controllers\AuthController@login")->name('login.do');
+Route::post("register", "App\Http\Controllers\AuthController@register")->name('register.do');
 
 Route::prefix('app')->group(function() {
     Route::group(['middleware' => ['auth']], function() {
