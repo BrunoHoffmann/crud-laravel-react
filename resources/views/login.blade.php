@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="backend/assets/images/favicon.png"/>
 
 
-    <title>Admin - SulRifas</title>
+    <title>Sistema CRUD</title>
 
     <meta name="csrf-token" content="{{csrf_token() }}">
 </head>
