@@ -48,12 +48,12 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if(in_array('', $request->only('email', 'password'))) {
-            $json['message'] = $this->message->error('Ooops, informe todos os dados para efetuar o login')->render();
+            $json['message'] = $this->message->error('Ooops, inform all fields to do login')->render();
             return response()->json($json);
         }
 
         if(!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-            $json['message'] = $this->message->error('Ooops, e-mail informado não é válido')->render();
+            $json['message'] = $this->message->error('Ooops, something is wrong')->render();
             return response()->json($json);
         }
 
@@ -63,21 +63,41 @@ class AuthController extends Controller
         ];
 
         if(!Auth::attempt($credentials)) {
-            $json['message'] = $this->message->error('Ooops, usuário e senha incorretos')->render();
+            $json['message'] = $this->message->error('Ooops, e-mail or password are wrong')->render();
             return response()->json($json);
         }
         $nameUser = User::firstWhere('email', $request->email);
         session(['user' => $nameUser['name']]);
         session(['id' => $nameUser['id']]);
 
-        $json['redirect'] = route('admin.home');
+        $json['redirect'] = route('app.home');
         return response()->json($json);
+    }
+
+    public function register(UserRequest $request)
+    {
+        $user = User::where('email', $request->email)->get();
+
+        if(!empty($user[0]->email)) {
+            return view('admin.users.create', [
+                'error' => 'E-mail já existente'
+            ]);
+        }
+
+        $password = Hash::make($request->password);
+
+        $user = User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => $password
+        ]);
+
+        return redirect()->route('users.index');
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('admin.login');
+        return redirect()->route('app.login');
     }
-
 }
